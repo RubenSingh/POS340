@@ -41,8 +41,8 @@ namespace POS_Application
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.Deptext = new System.Windows.Forms.Label();
-            this.txtDepartment = new System.Windows.Forms.TextBox();
             this.txtTax = new System.Windows.Forms.TextBox();
+            this.ddlDepartment = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnClose
@@ -176,18 +176,10 @@ namespace POS_Application
             this.Deptext.Location = new System.Drawing.Point(191, 273);
             this.Deptext.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.Deptext.Name = "Deptext";
-            this.Deptext.Size = new System.Drawing.Size(255, 44);
+            this.Deptext.Size = new System.Drawing.Size(208, 44);
             this.Deptext.TabIndex = 9;
-            this.Deptext.Text = "Department  ID:";
+            this.Deptext.Text = "Department:";
             this.Deptext.Click += new System.EventHandler(this.Deptext_Click);
-            // 
-            // txtDepartment
-            // 
-            this.txtDepartment.Location = new System.Drawing.Point(505, 271);
-            this.txtDepartment.Margin = new System.Windows.Forms.Padding(8, 9, 8, 9);
-            this.txtDepartment.Name = "txtDepartment";
-            this.txtDepartment.Size = new System.Drawing.Size(954, 43);
-            this.txtDepartment.TabIndex = 4;
             // 
             // txtTax
             // 
@@ -197,14 +189,22 @@ namespace POS_Application
             this.txtTax.Size = new System.Drawing.Size(954, 43);
             this.txtTax.TabIndex = 17;
             // 
+            // ddlDepartment
+            // 
+            this.ddlDepartment.FormattingEnabled = true;
+            this.ddlDepartment.Location = new System.Drawing.Point(505, 274);
+            this.ddlDepartment.Name = "ddlDepartment";
+            this.ddlDepartment.Size = new System.Drawing.Size(954, 45);
+            this.ddlDepartment.TabIndex = 5;
+            // 
             // FrmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1851, 1218);
             this.ControlBox = false;
+            this.Controls.Add(this.ddlDepartment);
             this.Controls.Add(this.txtTax);
-            this.Controls.Add(this.txtDepartment);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
@@ -247,7 +247,7 @@ namespace POS_Application
         private System.Windows.Forms.TextBox txt;
         private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Label Deptext;
-        private System.Windows.Forms.TextBox txtDepartment;
         private System.Windows.Forms.TextBox txtTax;
+        private System.Windows.Forms.ComboBox ddlDepartment;
     }
 }

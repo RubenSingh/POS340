@@ -22,25 +22,53 @@ namespace POS_Application
 
         private void FrmItem_Load(object sender, EventArgs e)
         {
-
+            GetDepartment();
         }
 
-        
+       
         string conn = DBAccess.ConnectionString;
         DataRow dr;
+
+        public void GetDepartment()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conn))
+                {
+                    using (SqlCommand command = new SqlCommand("select Department_ID, DepartmentName from tbDepartment", connection))
+                    {
+                        SqlDataAdapter sda = new SqlDataAdapter(command);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        dr = dt.NewRow();
+                        dr.ItemArray = new object[] { 0, "--Select--" };
+                        dt.Rows.InsertAt(dr, 0);
+                        ddlDepartment.ValueMember = "Department_ID";
+                        ddlDepartment.DisplayMember = "DepartmentName";
+                        ddlDepartment.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception : " + ex);
+            }
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             int chkdisc = 0;
             try
             {
+                int DeptID = Convert.ToInt32(ddlDepartment.SelectedValue.ToString());
+
                 if (chkDiscount.Checked == true)
                 {
                     chkdisc = 1;
                 }
 
 
-                string qry = "INSERT INTO tbItem(ID, ItemName, Price, Quantity, Tax, IsDiscount) VALUES('" + txtDepartment.Text.Trim() + "','" + txtName.Text.Trim() + "','" + txtPrice.Text.Trim() + "','" + txtQty.Text.Trim() + "','" + txtTax.Text.Trim() + "','" + chkdisc + "')";//('" + txtDepartment.Text.Trim() + "', '" + txtName.Text.Trim() + "', '" + txtPrice.Text.Trim() + "', '" + txtQty.Text.Trim() + "', '" + txtTax.Text.Trim() + "', '" + chkDiscount.Checked + "')";
+                string qry = "INSERT INTO tbItem(ID, ItemName, Price, Quantity, Tax, IsDiscount) VALUES('" + DeptID + "','" + txtName.Text.Trim() + "','" + txtPrice.Text.Trim() + "','" + txtQty.Text.Trim() + "','" + txtTax.Text.Trim() + "','" + chkdisc + "')";//('" + txtDepartment.Text.Trim() + "', '" + txtName.Text.Trim() + "', '" + txtPrice.Text.Trim() + "', '" + txtQty.Text.Trim() + "', '" + txtTax.Text.Trim() + "', '" + chkDiscount.Checked + "')";
 
                 bool success = DBAccess.ExecuteInsertQuery(qry);
 
@@ -65,7 +93,7 @@ namespace POS_Application
             txtName.Clear();
             txtQty.Clear();
             txtPrice.Clear();
-            txtDepartment.Clear();
+            ddlDepartment.SelectedIndex = 0;
             txtTax.Clear();
             chkDiscount.Checked = false;
         }
