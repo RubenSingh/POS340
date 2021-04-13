@@ -304,6 +304,7 @@ namespace POS_Application
             this.btnPay.TabIndex = 9;
             this.btnPay.Text = "Pay Now";
             this.btnPay.UseVisualStyleBackColor = false;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
             // label9
             // 

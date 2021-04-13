@@ -48,5 +48,17 @@ namespace POS_Application
             Customer objCustomer = new Customer();
             objCustomer.ShowDialog();
         }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
