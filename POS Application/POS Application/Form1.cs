@@ -42,5 +42,11 @@ namespace POS_Application
         {
             this.Close();
         }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            Customer objCustomer = new Customer();
+            objCustomer.ShowDialog();
+        }
     }
 }
